@@ -34,4 +34,4 @@ ENV ACESTEP_API_HOST=0.0.0.0 \
 
 EXPOSE 8001
 
-CMD ["uvicorn", "acestep.api_server:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "1", "--log-level", "info"]
+CMD ["sh", "-c", "uvicorn acestep.api_server:app --host \"${ACESTEP_API_HOST:-0.0.0.0}\" --port \"${ACESTEP_API_PORT:-8001}\" --workers 1 --log-level \"${ACESTEP_API_LOG_LEVEL:-info}\""]
