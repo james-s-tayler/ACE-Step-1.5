@@ -21,12 +21,13 @@ ENV PATH="/opt/venv/bin:$PATH"
 WORKDIR /app
 
 COPY requirements.txt pyproject.toml README.md /app/
-COPY acestep /app/acestep
 
 RUN pip install --upgrade pip setuptools wheel \
-    && pip install --extra-index-url https://download.pytorch.org/whl/cu128 -r requirements.txt \
-    && pip install -e . --no-deps
+    && pip install --extra-index-url https://download.pytorch.org/whl/cu128 -r requirements.txt
 
+COPY acestep /app/acestep
+
+RUN pip install -e . --no-deps
 ENV ACESTEP_API_HOST=0.0.0.0 \
     ACESTEP_API_PORT=8001 \
     ACESTEP_API_LOG_LEVEL=info
