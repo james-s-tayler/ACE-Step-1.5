@@ -321,6 +321,20 @@ Open http://localhost:7860 in your browser. Models will be downloaded automatica
 uv run acestep-api
 ```
 
+**Docker (NVIDIA GPU):**
+
+> **Note:** Requires [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
+
+```bash
+# Build the image
+docker build -t acestep-api:gpu .
+
+# Run the API server
+docker run --rm --gpus all -p 8001:8001 \
+  -e ACESTEP_API_LOG_LEVEL=info \
+  acestep-api:gpu
+```
+
 **Using Python directly:**
 
 > **Note:** Make sure to activate your Python environment first (see note above).
